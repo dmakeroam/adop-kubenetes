@@ -1,0 +1,14 @@
+{
+  "checks": {
+    "check_basic_procs": {
+      "command": "${PLUGINS_DIR}/basic/check-procs.rb",
+      "handlers": [
+        "mailer"
+      ],
+      "subscribers": [
+        "basic"
+      ],
+      "interval": 60
+    }
+  }
+}
