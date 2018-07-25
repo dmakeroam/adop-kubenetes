@@ -311,7 +311,7 @@ gitlab:
     ports:
     - "10022:22"
     environment:
-    - DEBUG=false
+    - DEBUG=true
 
     - DB_ADAPTER=postgresql
     - DB_HOST=postgresql
