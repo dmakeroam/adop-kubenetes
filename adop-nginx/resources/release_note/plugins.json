@@ -18,6 +18,13 @@
                         "link": "/sonar/"
                     },
                     {
+                        "id": "gitlab",
+                        "title": "gitlab",
+                        "img": "img/gitlab.svg",
+                        "description": "Git Repository Management & Code Review Tool",
+                        "link": "/gitlab/"
+                    },
+                    {
                         "id": "nexus",
                         "title": "nexus",
                         "img": "img/nexus.png",
