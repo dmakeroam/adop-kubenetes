@@ -282,8 +282,9 @@ kibana:
   ports:
     - "5601:5601"
 
-redis:
+gitlab-redis:
     net: adop
+    container_name: gitlab-redis
     restart: always
     image: sameersbn/redis:3.0.6
     command:
@@ -291,6 +292,7 @@ redis:
 
 postgresql:
     net: adop
+    container_name: gitlab-postgresql
     restart: always
     image: sameersbn/postgresql:10
     environment:
@@ -301,12 +303,13 @@ postgresql:
 
 gitlab:
     net: adop
+    container_name: gitlab
     restart: always
     image: sameersbn/gitlab:11.1.0
     expose:
     - "80"
     ports:
-    - "22"
+    - "22:22"
     environment:
     - DEBUG=false
 
