@@ -312,7 +312,7 @@ gitlab:
     - "10022:22"
     environment:
     - DEBUG=true
-
+    - GITLAB_RELATIVE_URL_ROOT=/gitlab
     - DB_ADAPTER=postgresql
     - DB_HOST=gitlab-postgresql
     - DB_PORT=5432
