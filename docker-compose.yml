@@ -108,10 +108,11 @@ sonar:
   container_name: sonar
   restart: always
   image: accenture/adop-sonar:0.4.1
+  links:
+    - sonar-mysql
   expose:
     - "9000"
   environment:
-    - "dependency:container==sonar-mysql"
     - "SONARQUBE_JDBC_USERNAME=${SONAR_MYSQL_USER}"
     - "SONARQUBE_JDBC_PASSWORD=${SONAR_MYSQL_PASSWORD}"
     - "LDAP_URL=ldap://${LDAP_SERVER}"
