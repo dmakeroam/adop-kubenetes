@@ -331,6 +331,8 @@ gitlab:
     - GITLAB_ROOT_EMAIL=admin@hml-proj.cc
     - LDAP_ENABLED=true
     - LDAP_HOST=ldap
+    - LDAP_UID=uid
+    - LDAP_ALLOW_USERNAME_OR_EMAIL_LOGIN=false
     - LDAP_VERIFY_SSL=false
     - LDAP_BIND_DN=${LDAP_ADMIN},${LDAP_FULL_DOMAIN}
     - LDAP_PASS=${LDAP_PWD}
