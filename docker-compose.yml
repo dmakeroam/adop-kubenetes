@@ -20,6 +20,9 @@ ldap:
   net: adop
   restart: always
   image: accenture/adop-ldap:me
+  volumes:
+    - ldap-data:/var/lib/ldap
+    - ldap-config:/etc/ldap
   ports:
     - "389:389/tcp"
   environment:
@@ -86,6 +89,8 @@ sensu-rabbitmq:
   container_name: sensu-rabbitmq
   restart: always
   image: rabbitmq:3.5.7-management
+  volumes:
+    - sensu-rabbitmq-data:/var/lib/rabbitmq
   expose:
     - "5672"
     - "5671"
@@ -97,6 +102,8 @@ sensu-redis:
   container_name: sensu-redis
   restart: always
   image: redis:3.0.7
+  volumes:
+    - sensu-redis-data:/data
   expose:
     - "6379"
 
@@ -105,6 +112,8 @@ sonar-mysql:
   container_name: sonar-mysql
   restart: always
   image: mysql:5.6.25
+  volumes:
+    - sonar-mysql-data:/var/lib/mysql
   expose:
     - "3306"
   environment:
@@ -118,6 +127,11 @@ sonar:
   container_name: sonar
   restart: always
   image: accenture/adop-sonar:0.4.1
+  volumes:
+      - sonarqube-conf:/opt/sonarqube/conf
+      - sonarqube-data:/opt/sonarqube/data
+      - sonarqube-extensions:/opt/sonarqube/extensions
+      - sonarqube-bundled-plugins:/opt/sonarqube/lib/bundled-plugins
   expose:
     - "9000"
   environment:
@@ -140,6 +154,8 @@ jenkins:
   container_name: jenkins
   restart: always
   image: accenture/adop-jenkins:0.3.3
+  volmes:
+    - jenkins-data:/var/jenkins_home
   ports:
     - "50000:50000/tcp"
   expose:
@@ -205,6 +221,8 @@ nexus:
   container_name: nexus
   restart: always
   image:  accenture/adop-nexus:0.2.2
+  volumes:
+    - nexus-data:/nexus-data
   expose:
     - "8081"
   environment:
@@ -257,7 +275,7 @@ elasticsearch:
   ports:
     - "9200:9200"
   volumes:
-    - elasticsearch_data:/usr/share/elasticsearch/data
+    - elasticsearch-data:/usr/share/elasticsearch/data
 
 logstash:
   net: adop
@@ -285,6 +303,8 @@ kibana:
 gitlab-redis:
     net: adop
     container_name: gitlab-redis
+    volumes:
+    - gitlab-redis-data:/data
     restart: always
     image: sameersbn/redis:3.0.6
     command:
@@ -293,6 +313,8 @@ gitlab-redis:
 gitlab-postgresql:
     net: adop
     container_name: gitlab-postgresql
+    volumes:
+    - gitlab-postgresql-data:/var/lib/postgresql
     restart: always
     image: sameersbn/postgresql:10
     environment:
@@ -306,6 +328,8 @@ gitlab:
     container_name: gitlab
     restart: always
     image: sameersbn/gitlab:11.1.0
+    volumes:
+    - gitlab-data:/home/git/data
     expose:
     - "80"
     ports:
