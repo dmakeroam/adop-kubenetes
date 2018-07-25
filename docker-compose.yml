@@ -307,7 +307,7 @@ gitlab:
     restart: always
     image: sameersbn/gitlab:11.1.0
     expose:
-    - "80"
+    - "10080"
     ports:
     - "10022:22"
     environment:
@@ -324,6 +324,7 @@ gitlab:
     - TZ=Asia/Bangkok
     - GITLAB_TIMEZONE=Bangkok
     - GITLAB_HOST=localhost
+    - GITLAB_PORT=10080
     - GITLAB_SECRETS_DB_KEY_BASE=long-and-random-alphanumeric-string
     - GITLAB_SECRETS_SECRET_KEY_BASE=long-and-random-alphanumeric-string
     - GITLAB_SECRETS_OTP_KEY_BASE=long-and-random-alphanumeric-string
