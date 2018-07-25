@@ -319,7 +319,7 @@ gitlab:
     - DB_USER=gitlab
     - DB_PASS=password
     - DB_NAME=gitlabhq_production
-    - REDIS_HOST=redis
+    - REDIS_HOST=gitlab-redis
     - REDIS_PORT=6379
     - TZ=Asia/Bangkok
     - GITLAB_TIMEZONE=Bangkok
