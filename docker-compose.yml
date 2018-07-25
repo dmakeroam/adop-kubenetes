@@ -309,7 +309,7 @@ gitlab:
     expose:
     - "80"
     ports:
-    - "22:22"
+    - "10022:22"
     environment:
     - DEBUG=false
 
