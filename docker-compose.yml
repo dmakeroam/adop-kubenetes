@@ -2,6 +2,7 @@ proxy:
   container_name: proxy
   restart: always
   image: accenture/adop-nginx:me
+  net: adop
   ports:
     - "80:80"
     - "443:443"
@@ -16,6 +17,7 @@ proxy:
 
 ldap:
   container_name: ldap
+  net: adop
   restart: always
   image: accenture/adop-ldap:me
   ports:
@@ -30,6 +32,7 @@ ldap:
     SLAPD_FULL_DOMAIN: ${LDAP_FULL_DOMAIN}
 
 sensu-uchiwa:
+  net: adop
   container_name: sensu-uchiwa
   restart: always
   image: sstarcher/uchiwa:0.15.0
@@ -40,6 +43,7 @@ sensu-uchiwa:
     - "3000"
 
 sensu-api:
+  net: adop
   container_name: sensu-api
   restart: always
   image: accenture/adop-sensu:me
@@ -52,6 +56,7 @@ sensu-api:
     REDIS_HOST: sensu-redis
 
 sensu-server:
+  net: adop
   container_name: sensu-server
   restart: always
   image: accenture/adop-sensu:me
@@ -63,6 +68,7 @@ sensu-server:
     TRANSPORT_NAME: rabbitmq
 
 sensu-client:
+  net: adop
   container_name: sensu-client
   restart: always
   image: accenture/adop-sensu:me
@@ -76,6 +82,7 @@ sensu-client:
     CLIENT_SUBSCRIPTIONS: "proxy,jenkins,nexus,sonarqube,sensu,kibana"
 
 sensu-rabbitmq:
+  net: adop
   container_name: sensu-rabbitmq
   restart: always
   image: rabbitmq:3.5.7-management
@@ -86,6 +93,7 @@ sensu-rabbitmq:
     - "15671"
 
 sensu-redis:
+  net: adop
   container_name: sensu-redis
   restart: always
   image: redis:3.0.7
@@ -93,6 +101,7 @@ sensu-redis:
     - "6379"
 
 sonar-mysql:
+  net: adop
   container_name: sonar-mysql
   restart: always
   image: mysql:5.6.25
@@ -105,6 +114,7 @@ sonar-mysql:
     MYSQL_DATABASE: ${SONAR_MYSQL_DATABASE}
 
 sonar:
+  net: adop
   container_name: sonar
   restart: always
   image: accenture/adop-sonar:0.4.1
@@ -128,6 +138,7 @@ sonar:
     - "SONARQUBE_JDBC_URL=jdbc:mysql://sonar-mysql:3306/${SONAR_MYSQL_DATABASE}?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true"
 
 jenkins:
+  net: adop
   container_name: jenkins
   restart: always
   image: accenture/adop-jenkins:0.3.3
@@ -179,6 +190,7 @@ jenkins:
     ADOP_PLATFORM_MANAGEMENT_VERSION: "1c2aac27a926796490cf5a1b97f7064af31c44fe"
 
 jenkins-slave:
+  net: adop
   container_name: jenkins-slave
   restart: always
   image: accenture/adop-jenkins-slave:0.1.4
@@ -191,6 +203,7 @@ jenkins-slave:
     INITIAL_ADMIN_PASSWORD: ${INITIAL_ADMIN_PASSWORD_PLAIN}
 
 nexus:
+  net: adop
   container_name: nexus
   restart: always
   image:  accenture/adop-nexus:0.2.2
@@ -210,6 +223,7 @@ nexus:
     LDAP_GROUP_BASE_DN: "${LDAP_GROUP_BASE_DN}"
 
 ldap-ltb:
+  net: adop
   container_name: ldap-ltb
   restart: always
   image: accenture/adop-ldap-ltb:0.1.0
@@ -222,6 +236,7 @@ ldap-ltb:
     LDAP_LTB_BS: "${LDAP_FULL_DOMAIN}"
 
 ldap-phpadmin:
+  net: adop
   container_name: ldap-phpadmin
   restart: always
   image: accenture/adop-ldap-phpadmin:0.1.0
@@ -236,6 +251,7 @@ ldap-phpadmin:
 
 
 elasticsearch:
+  net: adop
   container_name: elasticsearch
   restart: always
   image: elasticsearch:2.1.1
@@ -246,6 +262,7 @@ elasticsearch:
     - elasticsearch_data:/usr/share/elasticsearch/data
 
 logstash:
+  net: adop
   container_name: logstash
   restart: always
   image: accenture/adop-logstash:0.1.0
@@ -257,6 +274,7 @@ logstash:
     - "5000:5000/tcp"
 
 kibana:
+  net: adop
   container_name: kibana
   restart: always
   image: kibana:4.3.1
