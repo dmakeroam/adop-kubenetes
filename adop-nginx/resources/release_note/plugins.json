@@ -54,8 +54,5 @@
                     }
                 ]
             }
-        ],
-        "blueprints": [
-            {"url": "bp/demo-release-note.html"}
         ]
     }

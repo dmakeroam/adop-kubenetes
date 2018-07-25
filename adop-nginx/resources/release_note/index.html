@@ -40,7 +40,7 @@
              <div class="header-cover">
                 <div class="header-intro">
                      <h1 class="header-title">
-                        HML DevOps Dashboard
+                        DevOps Dashboard
                      </h1>                    
                      
                 </div>
@@ -54,13 +54,6 @@
                 <div ng-repeat="linkitem in mainCtrl.core">
                      <component-list></component-list>
                  </div>
-            </div>
-           
-            <div id="blueprints">
-                <div ng-repeat="code in codeJSON">
-                    <ng-include src="code.url"></ng-include> <!-- includes the url from the object, which has the property url.-->
-                    <hr ng-hide="$last" class="blueprint-separator">
-                </div>                
             </div>
                       
         </div>
