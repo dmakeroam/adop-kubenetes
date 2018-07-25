@@ -154,7 +154,7 @@ jenkins:
   container_name: jenkins
   restart: always
   image: accenture/adop-jenkins:0.3.3
-  volmes:
+  volumes:
     - jenkins-data:/var/jenkins_home
   ports:
     - "50000:50000/tcp"
