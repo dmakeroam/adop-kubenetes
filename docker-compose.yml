@@ -281,3 +281,59 @@ kibana:
     - ELASTICSEARCH_URL=http://elasticsearch:9200
   ports:
     - "5601:5601"
+
+redis:
+    net: adop
+    restart: always
+    image: sameersbn/redis:3.0.6
+    command:
+    - --loglevel warning
+
+postgresql:
+    net: adop
+    restart: always
+    image: sameersbn/postgresql:10
+    environment:
+    - DB_USER=gitlab
+    - DB_PASS=password
+    - DB_NAME=gitlabhq_production
+    - DB_EXTENSION=pg_trgm
+
+gitlab:
+    net: adop
+    restart: always
+    image: sameersbn/gitlab:11.1.0
+    expose:
+    - "80"
+    ports:
+    - "22"
+    environment:
+    - DEBUG=false
+
+    - DB_ADAPTER=postgresql
+    - DB_HOST=postgresql
+    - DB_PORT=5432
+    - DB_USER=gitlab
+    - DB_PASS=password
+    - DB_NAME=gitlabhq_production
+    - REDIS_HOST=redis
+    - REDIS_PORT=6379
+    - TZ=Asia/Bangkok
+    - GITLAB_TIMEZONE=Bangkok
+    - GITLAB_HOST=localhost
+    - GITLAB_SECRETS_DB_KEY_BASE=long-and-random-alphanumeric-string
+    - GITLAB_SECRETS_SECRET_KEY_BASE=long-and-random-alphanumeric-string
+    - GITLAB_SECRETS_OTP_KEY_BASE=long-and-random-alphanumeric-string
+    - GITLAB_ROOT_PASSWORD=password
+    - GITLAB_ROOT_EMAIL=admin@hml-proj.cc
+    - LDAP_ENABLED=true
+    - LDAP_HOST=ldap
+    - LDAP_VERIFY_SSL=false
+    - LDAP_BIND_DN=${LDAP_ADMIN},${LDAP_FULL_DOMAIN}
+    - LDAP_PASS=${LDAP_PWD}
+    - LDAP_ACTIVE_DIRECTORY=false
+    - LDAP_BASE=${LDAP_USER_BASE_DN}
+
+
+
+
